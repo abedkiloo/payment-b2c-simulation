@@ -1,61 +1,74 @@
-Mobile Payment API
-Overview
-The Mobile Payment API is a Spring Boot application that facilitates mobile money transactions. It allows users to initiate payments, check transaction statuses, retry failed transactions, and view their transaction history. The system integrates with mobile money providers (e.g., M-Pesa, Airtel Money) and sends real-time SMS notifications for payment updates.
+# Mobile Payment API
 
-Features
- - Initiate mobile money payments
- - Check transaction status
- - Retry failed transactions
- - View transaction history
- -  Integration with mobile money providers
- -  SMS notifications for payment updates
+## Overview
+The **Mobile Payment API** is a Spring Boot application that facilitates **mobile money transactions**.  
+It allows users to:
+- **Initiate payments**
+- **Check transaction statuses**
+- **Retry failed transactions**
+- **View their transaction history**
 
-Technology Stack
-Spring Boot – Backend framework
+The system integrates with **mobile money providers** (e.g., **M-Pesa, Airtel Money**) and sends **real-time SMS notifications** for payment updates.
 
-Spring Data JPA – ORM for database operations
+---
 
-MySQL – Relational database
+## Features
+- Initiate mobile money payments  
+- Check transaction status  
+-  Retry failed transactions  
+-  View transaction history  
+-  Integration with mobile money providers  
+-  SMS notifications for payment updates
 
-Hibernate – ORM implementation
+---
 
-Lombok – Reduces boilerplate code
+## Technology Stack
+- **Spring Boot** – Backend framework
+- **Spring Data JPA** – ORM for database operations
+- **MySQL** – Relational database
+- **Hibernate** – ORM implementation
+- **Lombok** – Reduces boilerplate code
+- **Maven** – Dependency management
+- **Postman** – API testing tool
 
-Maven – Dependency management
+---
 
-Postman – API testing tool
-
-Project Structure
-
+## Project Structure
+```bash
 payment-b2c/
 │── src/
 │   ├── main/
 │   │   ├── java/com/abedkiloo/
-│   │   │   ├── controller/    # REST Controllers
-│   │   │   ├── dto/           # Data Transfer Objects
-│   │   │   ├── model/         # Entity Models
-│   │   │   ├── repository/    # Data Repository Layer
-│   │   │   ├── service/       # Business Logic Layer
-│   │   │   ├── MobilePaymentApplication.java # Main App
+│   │   │   ├── controller/            # REST Controllers
+│   │   │   ├── dto/                   # Data Transfer Objects
+│   │   │   ├── model/                 # Entity Models
+│   │   │   ├── repository/            # Data Repository Layer
+│   │   │   ├── service/               # Business Logic Layer
+│   │   │   ├── MobilePaymentApplication.java  # Main Application Entry Point
 │   ├── resources/
-│   │   ├── application.properties  # App Configuration
-│── pom.xml  # Project Dependencies
-│── README.md  # Project Documentation
-Getting Started
-1. Prerequisites
+│   │   ├── application.properties     # Application Configuration
+│── pom.xml                             # Project Dependencies
+│── README.md                           # Project Documentation
+
+
+# Getting Started
+
+## 1. Prerequisites
 Before running this project, ensure you have installed:
 
-JDK 17+
+-  JDK 17+  
+-  Maven
+-  MySQL
+-  Postman *(for testing API requests)*  
 
-Maven
+---
 
-MySQL
+## 2. Setup Database
 
-Postman (for testing API requests)
-
-2. Setup Database
-Create a MySQL database:
+### Create a MySQL database:
+```sql
 CREATE DATABASE payment_db;
+
 Update src/main/resources/application.properties with your database credentials:
 
 properties
@@ -137,3 +150,7 @@ server.port=8081
 Ensure MySQL is running and check credentials in application.properties.
 
 Run: mvn clean install
+Author
+👤 Abednego Kilonzo
+📧 Email: abednego.k.wambua@gmail.com
+📞 Phone: +254704494519
