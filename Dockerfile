@@ -1,14 +1,22 @@
-# Use OpenJDK 18 as base image
-FROM openjdk:18
-
-# Set the working directory inside the container
+FROM maven:3.8.6-openjdk-17 AS builder
 WORKDIR /app
 
-# Copy the project files to the container
-COPY target/abedkiloo-b2c-1.0-SNAPSHOT.jar app.jar
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# Expose the application's port (Change if necessary)
+COPY src/ src/
+
+RUN mvn clean package -DskipTests
+
+FROM openjdk:17-jdk-slim
+
+RUN useradd -m spring
+USER spring
+
+WORKDIR /app
+
+COPY --from=builder /app/target/*.jar app.jar
+
 EXPOSE 8080
 
-# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
