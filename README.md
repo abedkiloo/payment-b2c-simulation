@@ -91,9 +91,7 @@ API Endpoints
 🔹 Endpoint: POST /api/payment
 🔹 Request Body:
 
-json
-Copy
-Edit
+
 {
   "phoneNumber": "+254712345678",
   "amount": 500,
@@ -101,9 +99,7 @@ Edit
 }
 🔹 Response:
 
-json
-Copy
-Edit
+
 {
   "id": 1,
   "phoneNumber": "+254712345678",
