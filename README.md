@@ -1,4 +1,4 @@
-# Mobile Payment API
+# Mobile Payment b2c API
 
 ## Overview
 The **Mobile Payment API** is a Spring Boot application that facilitates **mobile money transactions**.  
