@@ -59,7 +59,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public String getTransactionStatus(String transactionId) {
-        return transactionRepository.findById(transactionId)
+        return transactionRepository.findById(Long.valueOf(transactionId))
                 .map(t -> "Transaction Status: " + t.getStatus())
                 .orElse("Transaction not found");
     }

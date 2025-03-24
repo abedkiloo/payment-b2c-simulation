@@ -3,6 +3,7 @@ package com.abedkiloo.controller;
 import com.abedkiloo.dto.PaymentRequest;
 import com.abedkiloo.model.Transaction;
 import com.abedkiloo.service.PaymentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,18 +11,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/payment")
+@RequiredArgsConstructor
 public class PaymentController {
     private final PaymentService paymentService;
 
-    public PaymentController(PaymentService paymentService) {
-        this.paymentService = paymentService;
-    }
-
     @PostMapping
-    public ResponseEntity<Transaction> initiatePayment(@RequestBody PaymentRequest request) {
+    public ResponseEntity<?> initiatePayment(@RequestBody PaymentRequest request) {
         Transaction transaction = paymentService.processPayment(request);
         if (transaction == null) {
-            return ResponseEntity.badRequest().build(); // Handle null response
+            return ResponseEntity.badRequest().body("Payment could not be processed.");
         }
         return ResponseEntity.ok(transaction);
     }
@@ -41,6 +39,9 @@ public class PaymentController {
     @GetMapping("/history/{phoneNumber}")
     public ResponseEntity<List<Transaction>> getTransactionHistory(@PathVariable String phoneNumber) {
         List<Transaction> transactions = paymentService.getTransactionHistory(phoneNumber);
+        if (transactions.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(transactions);
     }
 }
