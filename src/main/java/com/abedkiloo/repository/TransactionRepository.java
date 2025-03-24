@@ -10,12 +10,9 @@ import java.util.Optional;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-    // Find transaction by its unique transaction ID (if stored as a String)
     Optional<Transaction> findById(String transactionId);
 
-    // Find all transactions for a specific phone number
-    List<Transaction> findByPhoneNumber(String phoneNumber);
+    List<Transaction> findByRecipientPhone(String recipientPhone);
 
-    // Find transactions by their status (e.g., SUCCESS, PENDING, FAILED)
     List<Transaction> findByStatus(String status);
 }
