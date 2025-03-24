@@ -40,11 +40,11 @@ payment-b2c/
 │   ├── main/
 │   │   ├── java/com/abedkiloo/
 │   │   │   ├── controller/            # REST Controllers
-│   │   │   ├── dto/                   # Data Transfer Objects
-│   │   │   ├── model/                 # Entity Models
-│   │   │   ├── repository/            # Data Repository Layer
-│   │   │   ├── service/               # Business Logic Layer
-│   │   │   ├── MobilePaymentApplication.java  # Main Application Entry Point
+│   │   │   ├── dto/                   # Data      Transfer Objects
+│   │   │   ├── model/                 # EntityModels
+│   │   │   ├── repository/            # DataRepository Layer
+│   │   │   ├── service/               # Business  Logic Layer
+│   │   │   ├── Main.java  
 │   ├── resources/
 │   │   ├── application.properties     # Application Configuration
 │── pom.xml                             # Project Dependencies
