@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Copy Maven project files
 COPY pom.xml ./
-RUN mvn dependency:go-offline
+RUN mvn dependency:go-offline -B
 
 # Copy application source code
 COPY src ./src
@@ -16,11 +16,15 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 
-# Copy the built JAR from the previous stage
+# Copy the built JAR
 COPY --from=build /app/target/*.jar app.jar
 
 # Expose the application's port
 EXPOSE 8080
 
+# Health check (optional)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:8080/actuator/health || exit 1
+
 # Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Xms512m", "-Xmx1024m", "-jar", "app.jar"]
