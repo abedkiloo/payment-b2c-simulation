@@ -66,18 +66,18 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public String retryTransaction(String transactionId) {
-        return transactionRepository.findById(transactionId)
+        return transactionRepository.findById(Long.valueOf(transactionId)) // Convert String to Long
                 .map(t -> {
-                    if ("SUCCESS".equals(t.getStatus())) {
+                    if (TransactionStatus.SUCCESS.equals(t.getStatus())) {
                         return "Transaction already completed successfully.";
                     }
-                    return makePayment(new PaymentRequest(t.getPhoneNumber(), t.getAmount(), t.getProvider()));
+                    return makePayment(new PaymentRequest(t.getRecipientPhone(), t.getAmount(), t.getProvider()));
                 })
                 .orElse("Transaction not found");
     }
 
     @Override
     public List<Transaction> getTransactionHistory(String phoneNumber) {
-        return transactionRepository.findByPhoneNumber(phoneNumber);
+        return transactionRepository.findByRecipientPhone(phoneNumber);
     }
 }
